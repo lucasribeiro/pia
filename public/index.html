@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pia</title>
+  <link rel="icon" type="image/x-icon" href="./src/images/icons/cg-icon48x48.png">
+  <link rel="stylesheet" href="./src/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./src/css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div><img class="imagemTopo" src="./src/images/foto.png"></div>
+      <div class="pia">pia</div>
+      <div><img class="imagemTopo" src="./src/images/icons/pia-icon48x48.png"></div>
+      <div class="container-fluid">        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./help.html">Help</a>
+            </li>           
+          </ul>
+          <form class="d-flex" role="search">
+            <button id='notificationButton' type="button" class="btn btn-warning me-2">Habilitar Notificações</button>
+            <button id='installBtn' class="btn btn-outline-success">Instalar</button>
+          </form>
+          <a class="navbar-brand" href="#">Pia</a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="posts" class="m-3">
+      <div class="container">
+        <div class="row" id="display-posts">
+
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary fixed-button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Create Post</button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Escreva sua opinião em até 129 caracteres.</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="postForm" action='./'>             
+              <div class="mb-3">
+                <textarea class="form-control" id="post-description" maxlength="129" rows="4"></textarea>
+                <label id="count-text" class="col-form-label">129</label>
+              </div>              
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="closeButton" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" id="submitButton">Postar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="errorToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Error</strong>
+          <small>Now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Digite sua opinião!
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="syncToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Alert</strong>
+          <small>Now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Your post was saved for syncing! When your connection get re-stablished, we'll send your post!
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./src/js/bootstrap.min.js"></script>
+  <script src="./src/js/app.js"></script>
+  <script src="./src/js/idb.js"></script>
+  <script src="./src/js/utility.js"></script>
+  <script src="./src/js/createPost.js"></script>
+</body>
+</html>

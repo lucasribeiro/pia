@@ -1,0 +1,34 @@
+.fixed-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 2.5rem;
+}
+
+.imagemTopo {
+  width: 76px;
+  height: 76px;
+  padding: 10px;
+}
+
+.imagemPost {
+  width: 36px;
+  height: 36px;
+  padding: 5px;
+}
+
+.textPost {
+  align-items: start;
+  text-align: left;
+  word-wrap: break-word;
+  padding-top: 5px;
+}
+
+.pia {
+  font-weight: bolder;
+  font-size: 12;
+}
+
+body {
+  font-family: 'Chelsea Market', cursive;
+}
