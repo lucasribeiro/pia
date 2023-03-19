@@ -10,6 +10,10 @@ var closeButton = document.getElementById('closeButton');
 var errorToast = document.getElementById('errorToast');
 var syncToast = document.getElementById('syncToast');
 var installBtn = document.getElementById('installBtn');
+var submitFindButton = document.getElementById('submitFindButton');
+var textFind = document.getElementById('textFind');
+var closeFindButton = document.getElementById('closeFindButton');
+
 var online = true;
 
 window.addEventListener('online',  isOnline);
@@ -40,6 +44,9 @@ installBtn.addEventListener('click', function (e) {
 })
 
 function createCard (description) {
+
+  var numCards = displayPosts.childNodes.length;
+
   var column = document.createElement('div');
   column.classList.add('container');
   column.classList.add('text-center');
@@ -54,6 +61,8 @@ function createCard (description) {
   var colText = document.createElement('div');
   colText.classList.add('col-10');
   colText.classList.add('textPost');  
+  colText.setAttribute("id", "texto-" + (numCards + 1).toString());
+  
 
   var htmlDescription = document.createElement('p');
   htmlDescription.classList.add('card-text');
@@ -108,6 +117,52 @@ else{
         console.log(error);
       })
   }
+}
+
+submitFindButton.addEventListener('click', function() {
+  if (textFind.value !== '')
+  {
+    var numCards = displayPosts.childNodes.length;
+    searchTerm = textFind.value; 
+
+    for (let index = 0; index < numCards; index++) {
+      
+      var texto = document.getElementById('texto-' + (index + 1).toString());
+
+      var html = texto.innerHTML;
+      var html_limpo = tiraAcentos(html);
+
+      var pattern = "([^\\w]*)(" + tiraAcentos(searchTerm)+"|"+searchTerm + ")([^\\w]*)";
+      var rg = new RegExp(pattern, "g");
+      var match = rg.exec(html_limpo);
+      if(match) {
+        var match_pos = html_limpo.indexOf(tiraAcentos(match[2]));
+        match[2] = html.substring(match_pos, match[2].length+match_pos);
+        rg = new RegExp(pattern.replace(tiraAcentos(searchTerm),match[2]), "g");
+        html = html.replace(rg,match[1] + "<b class='find'>"+ match[2] +"</b>" + match[3]);
+        texto.innerHTML = html;
+      }      
+    }  
+  }
+  textFind.value = '';
+  closeFindButton.click();
+});
+
+function tiraAcentos(i){
+   
+  var i = i.toLowerCase().trim();
+
+  var acentos = "ãáàâäéèêëíìîïõóòôöúùûüç";
+  var sem_acentos = "aaaaaeeeeiiiiooooouuuuc";
+  
+  for(var x=0; x<i.length; x++){
+     var str_pos = acentos.indexOf(i.substr(x,1));
+     if(str_pos != -1){
+        i = i.replace(acentos.charAt(str_pos),sem_acentos.charAt(str_pos));
+     }
+  }
+  
+  return i;
 }
 
 // Evento de Click do Modal
